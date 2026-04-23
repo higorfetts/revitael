@@ -1,7 +1,7 @@
-// Revitael — Express backend (Render deployment) — Google Gemini
+// Revitael — Express backend (Render deployment) — Groq / Llama
 const express = require('express');
 const cors    = require('cors');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const Groq    = require('groq-sdk');
 
 const app  = express();
 const port = process.env.PORT || 3001;
@@ -61,22 +61,25 @@ app.post('/api/chat', async (req, res) => {
         return res.status(400).json({ error: 'messages array required' });
     }
     try {
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({
-            model: 'gemini-2.0-flash-lite',
-            systemInstruction: mode === 'analyzer' ? ANALYZER_SYSTEM : CREATOR_SYSTEM,
+        const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+        const systemPrompt = mode === 'analyzer' ? ANALYZER_SYSTEM : CREATOR_SYSTEM;
+
+        const groqMessages = [
+            { role: 'system', content: systemPrompt },
+            ...messages.map(m => ({
+                role: m.role === 'assistant' ? 'assistant' : 'user',
+                content: m.content
+            }))
+        ];
+
+        const completion = await groq.chat.completions.create({
+            model: 'llama-3.3-70b-versatile',
+            messages: groqMessages,
+            max_tokens: 2048,
+            temperature: 0.7,
         });
 
-        const history = messages.slice(0, -1).map(m => ({
-            role: m.role === 'assistant' ? 'model' : 'user',
-            parts: [{ text: m.content }]
-        }));
-
-        const chat = model.startChat({ history });
-        const lastMsg = messages[messages.length - 1].content;
-        const result = await chat.sendMessage(lastMsg);
-        const text = result.response.text();
-
+        const text = completion.choices[0].message.content;
         res.json({ content: text });
     } catch (err) {
         console.error(err);
