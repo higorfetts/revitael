@@ -1,7 +1,7 @@
-// Revitael — Express backend (Railway / Render deployment)
-const express    = require('express');
-const cors       = require('cors');
-const Anthropic  = require('@anthropic-ai/sdk');
+// Revitael — Express backend (Render deployment) — Google Gemini
+const express = require('express');
+const cors    = require('cors');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const app  = express();
 const port = process.env.PORT || 3001;
@@ -32,7 +32,7 @@ REGRAS:
 - Quando tiver TODAS as infos, inclua no final da resposta um bloco JSON entre as tags <!--CV_JSON: e --> com os dados estruturados assim:
 <!--CV_JSON:{"name":"","contact":{"email":"","phone":"","linkedin":"","city":""},"summary":"","experience":[{"company":"","role":"","period":"","bullets":[]}],"education":[{"degree":"","institution":"","year":""}],"skills":[],"languages":[],"certifications":[],"projects":[],"style":"profissional"}-->
 
-Responda sempre no idioma do usuário (português por padrão).`;
+Responda sempre em português.`;
 
 const ANALYZER_SYSTEM = `Você é o Revitael, um especialista em análise de currículos e recrutamento.
 Você receberá o texto de um currículo e a descrição de uma vaga, e deve fazer uma análise detalhada.
@@ -61,15 +61,23 @@ app.post('/api/chat', async (req, res) => {
         return res.status(400).json({ error: 'messages array required' });
     }
     try {
-        const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-        const systemPrompt = mode === 'analyzer' ? ANALYZER_SYSTEM : CREATOR_SYSTEM;
-        const response = await anthropic.messages.create({
-            model: 'claude-sonnet-4-6',
-            max_tokens: 2048,
-            system: systemPrompt,
-            messages: messages.map(m => ({ role: m.role, content: m.content }))
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const model = genAI.getGenerativeModel({
+            model: 'gemini-1.5-flash',
+            systemInstruction: mode === 'analyzer' ? ANALYZER_SYSTEM : CREATOR_SYSTEM,
         });
-        res.json({ content: response.content[0].text });
+
+        const history = messages.slice(0, -1).map(m => ({
+            role: m.role === 'assistant' ? 'model' : 'user',
+            parts: [{ text: m.content }]
+        }));
+
+        const chat = model.startChat({ history });
+        const lastMsg = messages[messages.length - 1].content;
+        const result = await chat.sendMessage(lastMsg);
+        const text = result.response.text();
+
+        res.json({ content: text });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Erro interno. Tente novamente.' });
