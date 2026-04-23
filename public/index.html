@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revitael — Seu currículo, reinventado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     LANDING PAGE
+══════════════════════════════════════════════════════ -->
+<div id="landing">
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo" id="nav-logo-link">
+                <span class="logo-mark-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="lbg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#5B21B6"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient>
+                            <linearGradient id="ldoc" x1="10" y1="7" x2="30" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#F0EBFF"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+                        </defs>
+                        <rect width="40" height="40" rx="10" fill="url(#lbg)"/>
+                        <rect x="0" y="0" width="40" height="18" rx="10" fill="white" opacity="0.07"/>
+                        <rect x="9" y="7" width="20" height="26" rx="4" fill="url(#ldoc)"/>
+                        <circle cx="16" cy="15" r="3.5" fill="#7C3AED" opacity="0.55"/>
+                        <path d="M11 22 Q11 19 16 19 Q21 19 21 22" fill="#7C3AED" opacity="0.35"/>
+                        <rect x="11" y="24" width="13" height="2" rx="1" fill="#7C3AED" opacity="0.2"/>
+                        <rect x="11" y="27" width="9" height="2" rx="1" fill="#7C3AED" opacity="0.15"/>
+                        <path d="M32 5 L33 8.2 L36.2 9.2 L33 10.2 L32 13.4 L31 10.2 L27.8 9.2 L31 8.2 Z" fill="#E879F9"/>
+                        <circle cx="6" cy="31" r="1.8" fill="#A78BFA" opacity="0.65"/>
+                    </svg>
+                </span>
+                <span class="logo-text">Revitael</span>
+            </a>
+            <div class="nav-actions">
+                <button class="btn-theme" id="btn-theme" title="Alternar tema">
+                    <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="btn-nav-cta" id="btn-nav-start">Começar agora</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge reveal">
+                <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                IA que entende você
+            </div>
+            <h1 class="hero-title reveal">
+                Currículos que<br>
+                <span class="gradient-text">abrem portas.</span>
+            </h1>
+            <p class="hero-sub reveal">
+                IA que faz a diferença. Crie seu currículo em minutos<br>
+                ou analise-o contra qualquer vaga em segundos.
+            </p>
+            <div class="hero-ctas reveal">
+                <button class="btn-primary magnetic" id="btn-criar" data-mode="creator">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+                    <span>Criar meu currículo</span>
+                </button>
+                <button class="btn-outline magnetic" id="btn-analisar" data-mode="analyzer">
+                    <svg class="btn-icon-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <span>Analisar meu currículo</span>
+                </button>
+            </div>
+            <p class="hero-note reveal">Grátis · Sem cadastro · PDF em segundos</p>
+        </div>
+        <div class="hero-visual reveal">
+            <div class="doc-float-scene">
+                <div class="doc-platform"></div>
+                <div class="doc-card">
+                    <div class="doc-card-header">
+                        <div class="doc-card-avatar"></div>
+                        <div class="doc-card-info">
+                            <div class="doc-name">Lucas Mendes</div>
+                            <div class="doc-role">Desenvolvedor Full Stack</div>
+                            <div class="doc-location">São Paulo, SP · lucas@email.com</div>
+                        </div>
+                    </div>
+                    <div class="doc-divider"></div>
+                    <div class="doc-section">
+                        <div class="doc-section-title">Experiência</div>
+                        <div class="doc-job">
+                            <div class="doc-job-top">
+                                <span class="doc-job-company">Nubank</span>
+                                <span class="doc-job-period">2022 – atual</span>
+                            </div>
+                            <div class="doc-job-title">Engenheiro de Software Sênior</div>
+                            <div class="doc-line full"></div>
+                            <div class="doc-line wide"></div>
+                        </div>
+                        <div class="doc-job">
+                            <div class="doc-job-top">
+                                <span class="doc-job-company">iFood</span>
+                                <span class="doc-job-period">2020 – 2022</span>
+                            </div>
+                            <div class="doc-job-title">Desenvolvedor Pleno</div>
+                            <div class="doc-line medium"></div>
+                        </div>
+                    </div>
+                    <div class="doc-divider"></div>
+                    <div class="doc-section">
+                        <div class="doc-section-title">Habilidades</div>
+                        <div class="doc-tags">
+                            <span>React</span><span>Node.js</span><span>TypeScript</span><span>Firebase</span><span>AWS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="doc-badge doc-badge-match">
+                    <div class="doc-check-icon">
+                        <svg viewBox="0 0 16 16" fill="none"><polyline points="3,8 6,11 13,4" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div>
+                        <div class="doc-badge-label">Análise IA</div>
+                        <div class="doc-badge-value">98% Match</div>
+                    </div>
+                </div>
+                <div class="doc-badge doc-badge-stars">
+                    <div class="doc-stars">★★★★★</div>
+                    <div class="doc-badge-sublabel">Qualidade do CV</div>
+                </div>
+                <div class="doc-badge doc-badge-chart">
+                    <svg viewBox="0 0 44 32" class="doc-chart-svg">
+                        <rect x="2" y="20" width="8" height="10" rx="2" fill="#A78BFA"/>
+                        <rect x="14" y="12" width="8" height="18" rx="2" fill="#7C3AED"/>
+                        <rect x="26" y="16" width="8" height="14" rx="2" fill="#A78BFA"/>
+                        <rect x="38" y="6" width="6" height="24" rx="2" fill="#7C3AED"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="section-inner">
+            <div class="section-label reveal">Como funciona</div>
+            <h2 class="section-title reveal">Dois modos, um resultado incrível</h2>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+                    </div>
+                    <h3>Criar do zero</h3>
+                    <p>Converse com a IA como num chat. Ela te guia, sugere, pergunta sobre certificados e experiências que você pode ter esquecido.</p>
+                    <ul class="feature-list">
+                        <li>Chat inteligente passo a passo</li>
+                        <li>Sugestões personalizadas</li>
+                        <li>3 estilos de currículo</li>
+                        <li>PDF profissional gerado na hora</li>
+                    </ul>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                    </div>
+                    <h3>Analisar e otimizar</h3>
+                    <p>Já tem um currículo? Envie junto com a vaga que quer. A IA dá uma nota, aponta o que falta e ainda sugere como melhorar.</p>
+                    <ul class="feature-list">
+                        <li>Score de compatibilidade 0-100</li>
+                        <li>Palavras-chave da vaga</li>
+                        <li>Gaps e como corrigir</li>
+                        <li>Sugestões personalizadas</li>
+                    </ul>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+                    </div>
+                    <h3>Rápido e bonito</h3>
+                    <p>Em minutos você sai com um PDF pronto para enviar. Templates desenhados para impressionar recrutadores.</p>
+                    <ul class="feature-list">
+                        <li>Template Profissional P&amp;B</li>
+                        <li>Template Moderno Lilás</li>
+                        <li>Template Minimalista</li>
+                        <li>Download imediato</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEPS -->
+    <section class="steps">
+        <div class="section-inner">
+            <div class="section-label reveal">Simples assim</div>
+            <h2 class="section-title reveal">Três passos para o emprego dos seus sonhos</h2>
+            <div class="steps-track">
+                <div class="step reveal">
+                    <div class="step-num">01</div>
+                    <div class="step-body">
+                        <h3>Escolha seu modo</h3>
+                        <p>Criar um currículo novo ou analisar o que já tem. Simples.</p>
+                    </div>
+                </div>
+                <div class="step-divider reveal"></div>
+                <div class="step reveal">
+                    <div class="step-num">02</div>
+                    <div class="step-body">
+                        <h3>Converse com a IA</h3>
+                        <p>Responda naturalmente. A IA extrai tudo que precisa e ainda sugere o que você pode ter esquecido.</p>
+                    </div>
+                </div>
+                <div class="step-divider reveal"></div>
+                <div class="step reveal">
+                    <div class="step-num">03</div>
+                    <div class="step-body">
+                        <h3>Baixe seu PDF</h3>
+                        <p>Currículo profissional pronto para enviar em segundos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-final">
+        <div class="cta-blob"></div>
+        <div class="section-inner" style="position:relative;z-index:1;text-align:center">
+            <h2 class="cta-title reveal">Pronto para se destacar?</h2>
+            <p class="cta-sub reveal">Centenas de pessoas já criaram currículos incríveis com o Revitael.</p>
+            <div class="hero-ctas reveal" style="justify-content:center">
+                <button class="btn-primary magnetic" id="btn-criar-2" data-mode="creator">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+                    <span>Criar meu currículo</span>
+                </button>
+                <button class="btn-outline magnetic" id="btn-analisar-2" data-mode="analyzer">
+                    <svg class="btn-icon-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <span>Analisar meu currículo</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <span>© 2026 Revitael · Feito com 💜 por Higor Feitosa</span>
+    </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     APP
+══════════════════════════════════════════════════════ -->
+<div id="app" class="app-screen hidden">
+
+    <!-- APP NAV -->
+    <nav class="app-nav">
+        <button class="btn-back" id="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            Voltar
+        </button>
+        <a href="#" class="nav-logo" id="app-logo-link">
+            <span class="logo-mark">R</span>
+            <span class="logo-text">Revitael</span>
+        </a>
+        <button class="btn-theme" id="btn-theme-app">
+            <svg id="icon-sun-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg id="icon-moon-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+    </nav>
+
+    <!-- MODE SELECT -->
+    <div id="mode-select" class="mode-select">
+        <h2 class="mode-title">O que você quer fazer?</h2>
+        <p class="mode-sub">Escolha o modo para começar</p>
+        <div class="mode-cards">
+            <div class="mode-card magnetic" id="mode-card-creator">
+                <div class="mode-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+                </div>
+                <h3>Criar currículo</h3>
+                <p>Converse com a IA e crie um currículo profissional do zero. Em minutos, PDF pronto.</p>
+                <span class="mode-card-cta">Começar →</span>
+            </div>
+            <div class="mode-card magnetic" id="mode-card-analyzer">
+                <div class="mode-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                </div>
+                <h3>Analisar currículo</h3>
+                <p>Envie seu currículo e a vaga. A IA dá uma nota e mostra exatamente o que melhorar.</p>
+                <span class="mode-card-cta">Analisar →</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── CREATOR MODE ─────────────────────────────── -->
+    <div id="creator-mode" class="creator-mode hidden">
+        <div class="creator-layout">
+
+            <!-- CHAT PANEL -->
+            <div class="chat-panel">
+                <div class="chat-header">
+                    <div class="chat-avatar">R</div>
+                    <div>
+                        <div class="chat-name">Revitael IA</div>
+                        <div class="chat-status"><span class="status-dot"></span> Online</div>
+                    </div>
+                    <button class="btn-reset-chat" id="btn-reset-creator" title="Reiniciar">↺</button>
+                </div>
+                <div class="chat-messages" id="creator-messages"></div>
+                <div class="chat-input-area">
+                    <textarea class="chat-input" id="creator-input" placeholder="Digite sua resposta..." rows="1"></textarea>
+                    <button class="btn-send" id="creator-send">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PREVIEW PANEL -->
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <span class="preview-title">Preview do Currículo</span>
+                    <div class="preview-actions">
+                        <div class="style-picker" id="style-picker">
+                            <button class="style-btn active" data-style="profissional">Profissional</button>
+                            <button class="style-btn" data-style="moderno">Moderno</button>
+                            <button class="style-btn" data-style="minimalista">Minimalista</button>
+                        </div>
+                        <button class="btn-download" id="btn-download-cv" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Baixar PDF
+                        </button>
+                    </div>
+                </div>
+                <div class="preview-body" id="preview-body">
+                    <div class="preview-empty">
+                        <div class="preview-empty-icon">📄</div>
+                        <p>Seu currículo aparecerá aqui<br>conforme você conversa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── ANALYZER MODE ────────────────────────────── -->
+    <div id="analyzer-mode" class="analyzer-mode hidden">
+        <div class="analyzer-layout">
+
+            <!-- UPLOAD + INPUT PANEL -->
+            <div class="upload-panel" id="upload-panel">
+                <h2 class="upload-title">Analisar Currículo</h2>
+                <p class="upload-sub">Envie seu currículo e cole a descrição da vaga</p>
+
+                <div class="upload-zone" id="upload-zone">
+                    <input type="file" id="cv-file-input" accept=".pdf" hidden>
+                    <div class="upload-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                </div>
+                    <p class="upload-text">Arraste seu currículo PDF aqui<br>ou <span class="upload-link">clique para selecionar</span></p>
+                    <p class="upload-hint">Apenas PDF · Máx. 10MB</p>
+                    <div class="upload-success hidden" id="upload-success">
+                        <span class="upload-success-icon">✓</span>
+                        <span id="upload-filename">arquivo.pdf</span>
+                        <button class="btn-remove-file" id="btn-remove-file">✕</button>
+                    </div>
+                </div>
+
+                <div class="form-group-an">
+                    <label class="form-label-an">Descrição da vaga</label>
+                    <textarea class="job-textarea" id="job-description" placeholder="Cole aqui a descrição completa da vaga que você quer se candidatar..."></textarea>
+                </div>
+
+                <button class="btn-analyze magnetic" id="btn-analyze">
+                    <span id="btn-analyze-text">🔍 Analisar agora</span>
+                    <div class="btn-spinner hidden" id="btn-spinner"></div>
+                </button>
+            </div>
+
+            <!-- RESULTS + CHAT PANEL -->
+            <div class="results-panel hidden" id="results-panel">
+                <!-- SCORE -->
+                <div class="score-section">
+                    <div class="score-circle-wrap">
+                        <svg class="score-svg" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="52" fill="none" stroke="var(--border)" stroke-width="8"/>
+                            <circle cx="60" cy="60" r="52" fill="none" stroke="var(--primary)" stroke-width="8"
+                                stroke-dasharray="327" stroke-dashoffset="327"
+                                stroke-linecap="round" transform="rotate(-90 60 60)"
+                                id="score-circle-fill"/>
+                        </svg>
+                        <div class="score-center">
+                            <div class="score-value" id="score-display">0</div>
+                            <div class="score-label-sm">/ 100</div>
+                        </div>
+                    </div>
+                    <div class="score-breakdown" id="score-breakdown">
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Palavras-chave</span>
+                            <div class="breakdown-bar"><div class="breakdown-fill" id="bar-keywords" style="width:0%"></div></div>
+                            <span class="breakdown-val" id="val-keywords">0/40</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Estrutura</span>
+                            <div class="breakdown-bar"><div class="breakdown-fill" id="bar-structure" style="width:0%"></div></div>
+                            <span class="breakdown-val" id="val-structure">0/20</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Experiência</span>
+                            <div class="breakdown-bar"><div class="breakdown-fill" id="bar-experience" style="width:0%"></div></div>
+                            <span class="breakdown-val" id="val-experience">0/25</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Formação</span>
+                            <div class="breakdown-bar"><div class="breakdown-fill" id="bar-education" style="width:0%"></div></div>
+                            <span class="breakdown-val" id="val-education">0/15</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANALYSIS CHAT -->
+                <div class="chat-panel analysis-chat">
+                    <div class="chat-header">
+                        <div class="chat-avatar">R</div>
+                        <div>
+                            <div class="chat-name">Revitael IA — Análise</div>
+                            <div class="chat-status"><span class="status-dot"></span> Online</div>
+                        </div>
+                        <button class="btn-reset-chat" id="btn-reset-analyzer" title="Nova análise">↺</button>
+                    </div>
+                    <div class="chat-messages" id="analyzer-messages"></div>
+                    <div class="chat-input-area">
+                        <textarea class="chat-input" id="analyzer-input" placeholder="Pergunte ou responda a IA..." rows="1"></textarea>
+                        <button class="btn-send" id="analyzer-send">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- CV RENDER TARGET (hidden, used for PDF) -->
+<div id="cv-render" style="position:absolute;left:-9999px;top:-9999px;width:210mm;"></div>
+
+<script>
+    // Set PDF.js worker path
+    if (typeof pdfjsLib !== 'undefined') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+</script>
+<script src="app.js"></script>
+</body>
+</html>

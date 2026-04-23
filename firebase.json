@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "target": "revitael",
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      { "source": "/api/**", "function": "revitaelApi" }
+    ]
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "revitael",
+      "ignore": ["node_modules", ".git"]
+    }
+  ]
+}

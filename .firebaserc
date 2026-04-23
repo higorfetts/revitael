@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "higorfetts-336d0"
+  },
+  "targets": {
+    "higorfetts-336d0": {
+      "hosting": {
+        "revitael": [
+          "revitael"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
