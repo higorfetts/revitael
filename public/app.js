@@ -431,6 +431,7 @@ function buildCvHtml(d, style) {
 document.getElementById('btn-download-cv').addEventListener('click', async () => {
     if (!cvReady) return;
     const btn = document.getElementById('btn-download-cv');
+    pulseBtn(btn);
     btn.disabled = true;
     btn.innerHTML = '<div class="btn-spinner" style="display:inline-block"></div> Preparando...';
 
@@ -833,32 +834,38 @@ function appendMessage(containerId, role, text) {
 
     const avatar = document.createElement('div');
     avatar.className = 'msg-avatar';
-    avatar.textContent = isAi ? 'R' : '👤';
+
+    if (isAi) {
+        avatar.textContent = 'R';
+    } else {
+        // Iniciais do nome coletado, ou ícone padrão
+        const name = cvData.name || '';
+        const initials = name
+            ? name.split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('')
+            : '';
+        if (initials) {
+            avatar.textContent = initials;
+        } else {
+            avatar.classList.add('no-initials');
+            avatar.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+        }
+    }
 
     const bubble = document.createElement('div');
     bubble.className = 'msg-bubble';
 
-    // Clean out CV_JSON tags before displaying
+    // Limpa tags ocultas, converte markdown e destaca keywords
     const clean = text
         .replace(/<!--CV_JSON:[\s\S]*?-->/g, '')
         .replace(/<!--ANALYSIS_JSON:[\s\S]*?-->/g, '')
         .trim();
 
-    bubble.innerHTML = markdownToHtml(clean);
+    bubble.innerHTML = highlightKeywords(markdownToHtml(clean));
 
     div.appendChild(avatar);
     div.appendChild(bubble);
-
-    if (isAi) {
-        // Typing animation
-        bubble.style.opacity = '0';
-        container.appendChild(div);
-        scrollBottom(container);
-        setTimeout(() => { bubble.style.opacity = '1'; bubble.style.transition = 'opacity .3s'; }, 50);
-    } else {
-        container.appendChild(div);
-        scrollBottom(container);
-    }
+    container.appendChild(div);
+    scrollBottom(container);
 }
 
 // Typing indicator
@@ -1281,6 +1288,7 @@ function decodeCv(b64) {
 }
 
 document.getElementById('btn-share-link').addEventListener('click', () => {
+    pulseBtn(document.getElementById('btn-share-link'));
     const b64  = encodeCv(cvData);
     const url  = `${location.origin}${location.pathname}#share=${b64}`;
     document.getElementById('sharelink-url').value = url;
@@ -1431,6 +1439,7 @@ document.getElementById('btn-copy-cv').addEventListener('click', () => {
     const text = cvDataToText(cvData);
     navigator.clipboard.writeText(text).then(() => {
         const btn = document.getElementById('btn-copy-cv');
+        pulseBtn(btn);
         btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><polyline points="20 6 9 17 4 12"/></svg> Copiado!';
         setTimeout(() => {
             btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg> Copiar texto';
@@ -1484,6 +1493,7 @@ function cvDataToText(d) {
 document.getElementById('btn-translate-cv').addEventListener('click', async () => {
     if (!cvReady) return;
     const btn = document.getElementById('btn-translate-cv');
+    pulseBtn(btn);
     btn.disabled = true;
     btn.innerHTML = '<div class="btn-spinner" style="display:inline-block;width:12px;height:12px;border-width:1.5px"></div> Traduzindo...';
 
@@ -1647,6 +1657,22 @@ function renderAnalysisHistory() {
             animateScore(item.score, item.breakdown || {});
         });
     });
+}
+
+// ── KEYWORD HIGHLIGHT ─────────────────────────────────
+function highlightKeywords(html) {
+    return html.replace(/>([^<]+)</g, (_, text) =>
+        '>' + text.replace(/\b(ATS|PDF|LinkedIn)\b/g,
+            '<mark class="kw-highlight">$1</mark>') + '<');
+}
+
+// ── BUTTON PULSE ──────────────────────────────────────
+function pulseBtn(el) {
+    if (!el) return;
+    el.classList.remove('btn-pulse');
+    void el.offsetWidth; // reflow para reiniciar animação
+    el.classList.add('btn-pulse');
+    el.addEventListener('animationend', () => el.classList.remove('btn-pulse'), { once: true });
 }
 
 // Minimal markdown → HTML
