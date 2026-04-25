@@ -105,18 +105,33 @@ app.post('/api/chat', async (req, res) => {
             }))
         ];
 
-        const completion = await groq.chat.completions.create({
+        res.setHeader('Content-Type', 'text/event-stream');
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Connection', 'keep-alive');
+        res.flushHeaders();
+
+        const stream = await groq.chat.completions.create({
             model: 'llama-3.3-70b-versatile',
             messages: groqMessages,
             max_tokens: 2048,
             temperature: 0.7,
+            stream: true,
         });
 
-        const text = completion.choices[0].message.content;
-        res.json({ content: text });
+        for await (const chunk of stream) {
+            const delta = chunk.choices[0]?.delta?.content || '';
+            if (delta) res.write(`data: ${JSON.stringify({ delta })}\n\n`);
+        }
+        res.write('data: [DONE]\n\n');
+        res.end();
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Erro interno. Tente novamente.' });
+        if (!res.headersSent) {
+            res.status(500).json({ error: 'Erro interno. Tente novamente.' });
+        } else {
+            res.write('data: [DONE]\n\n');
+            res.end();
+        }
     }
 });
 
