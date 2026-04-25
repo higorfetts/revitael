@@ -1338,7 +1338,7 @@ document.getElementById('btn-copy-sharelink').addEventListener('click', () => {
 })();
 
 // ══════════════════════════════════════════════════════
-//  1. EDIÇÃO DIRETA DO PREVIEW
+//  1. EDIÇÃO DIRETA DO PREVIEW + BULLET IA INLINE
 // ══════════════════════════════════════════════════════
 
 // Salva o campo editado no cvData quando o usuário sai do elemento
@@ -1348,6 +1348,60 @@ document.getElementById('preview-body').addEventListener('blur', e => {
     setCvField(el.dataset.cvField, el.innerText.trim());
     saveToStorage();
 }, true);
+
+// ── Botão flutuante "Melhorar com IA" nos bullets ─────
+let _bulletTarget = null;
+let _bulletHideTimer = null;
+const _floatBtn = document.getElementById('bullet-float-btn');
+
+document.getElementById('preview-body').addEventListener('focusin', e => {
+    const el = e.target.closest('[data-cv-field*="bullets"]');
+    clearTimeout(_bulletHideTimer);
+    if (!el) { _hideBulletBtn(); return; }
+    _bulletTarget = el;
+    _showBulletBtn(el);
+}, true);
+
+document.getElementById('preview-body').addEventListener('focusout', e => {
+    _bulletHideTimer = setTimeout(_hideBulletBtn, 180);
+}, true);
+
+function _showBulletBtn(el) {
+    const rect = el.getBoundingClientRect();
+    _floatBtn.style.top  = (rect.bottom + window.scrollY + 5) + 'px';
+    _floatBtn.style.left = rect.left + 'px';
+    _floatBtn.classList.remove('hidden');
+}
+function _hideBulletBtn() {
+    _floatBtn.classList.add('hidden');
+    _bulletTarget = null;
+}
+
+_floatBtn.addEventListener('mousedown', e => e.preventDefault()); // evita blur
+
+_floatBtn.addEventListener('click', async () => {
+    if (!_bulletTarget) return;
+    const original = _bulletTarget.innerText.trim();
+    if (!original) return;
+
+    clearTimeout(_bulletHideTimer);
+    const textEl = document.getElementById('bullet-float-text');
+    textEl.textContent = 'Melhorando...';
+    _floatBtn.disabled = true;
+
+    try {
+        const prompt = `Você é um especialista em currículos. Reescreva este trecho como um bullet profissional de currículo: use linguagem de impacto, voz ativa, inclua métricas/números quando possível. Retorne APENAS o bullet reescrito, sem explicações ou marcadores. Trecho: "${original}"`;
+        const res = await callApi('/api/chat', { messages: [{ role: 'user', content: prompt }], mode: 'creator' });
+        const improved = res.content.replace(/^[-•·]\s*/, '').trim();
+        _bulletTarget.innerText = improved;
+        setCvField(_bulletTarget.dataset.cvField, improved);
+        saveToStorage();
+    } catch(e) { /* silencioso */ }
+
+    textEl.textContent = 'Melhorar com IA';
+    _floatBtn.disabled = false;
+    _hideBulletBtn();
+});
 
 // Enter confirma a edição (sem quebrar linha)
 document.getElementById('preview-body').addEventListener('keydown', e => {
@@ -1503,6 +1557,35 @@ VAGA: ${jobDesc}`;
         document.getElementById('ats-present').innerHTML    = (data.present||[]).map(k => `<span class="ats-kw-tag present">${esc(k)}</span>`).join('');
         document.getElementById('ats-missing').innerHTML    = (data.missing||[]).map(k => `<span class="ats-kw-tag missing">${esc(k)}</span>`).join('');
         document.getElementById('ats-suggestions').innerHTML = (data.suggestions||[]).map(s => `<div class="ats-suggestion-item">${esc(s)}</div>`).join('');
+
+        // Cursos recomendados para cada keyword faltando
+        const missing = (data.missing || []).slice(0, 6);
+        if (missing.length) {
+            document.getElementById('ats-courses').innerHTML = missing.map(kw => {
+                const q = encodeURIComponent(kw);
+                return `<div class="course-item">
+                    <span class="course-kw">${esc(kw)}</span>
+                    <div class="course-links">
+                        <a href="https://www.udemy.com/courses/search/?q=${q}" target="_blank" rel="noopener" class="course-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L1.608 6v12L12 24l10.392-6V6zm-1.8 16.6l-4.2-2.4V9.8l4.2 2.4zm1.8-9.8L7.8 4.4 12 2l4.2 2.4zM13.8 16.6V12l4.2-2.4v4.4z"/></svg>
+                            Udemy
+                        </a>
+                        <a href="https://www.coursera.org/search?query=${q}" target="_blank" rel="noopener" class="course-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.96 0C5.378 0 0 5.377 0 11.96c0 6.582 5.377 11.96 11.96 11.96 6.582 0 11.96-5.378 11.96-11.96C23.919 5.377 18.541 0 11.96 0zm0 4.668c1.335 0 2.42 1.087 2.42 2.42 0 1.337-1.085 2.42-2.42 2.42-1.336 0-2.42-1.083-2.42-2.42 0-1.333 1.084-2.42 2.42-2.42zm4.134 13.558H7.826v-1.24c1.138-.45 1.93-1.55 1.93-2.842v-3.066c0-1.686 1.37-3.054 3.055-3.054h.3c1.684 0 3.054 1.368 3.054 3.054v3.066c0 1.293.79 2.392 1.93 2.842v1.24z"/></svg>
+                            Coursera
+                        </a>
+                        <a href="https://www.dio.me/search?q=${q}" target="_blank" rel="noopener" class="course-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.667 0C5.224 0 0 5.224 0 11.667S5.224 23.333 11.667 23.333 23.333 18.11 23.333 11.667 18.11 0 11.667 0zm0 4.167a7.5 7.5 0 1 1 0 15 7.5 7.5 0 0 1 0-15zm0 2.5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"/></svg>
+                            DIO
+                        </a>
+                    </div>
+                </div>`;
+            }).join('');
+            document.getElementById('ats-courses-section').classList.remove('hidden');
+        } else {
+            document.getElementById('ats-courses-section').classList.add('hidden');
+        }
+
         result.classList.remove('hidden');
     } catch(err) {
         document.getElementById('ats-missing').innerHTML = '<span class="ats-kw-tag missing">Erro ao analisar. Tente novamente.</span>';

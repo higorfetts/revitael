@@ -81,9 +81,9 @@
                     <span>Analisar meu currículo</span>
                 </button>
             </div>
-            <p class="hero-note reveal">Grátis · Sem cadastro · PDF em segundos</p>
+            <p class="hero-note reveal">Grátis · Sem cadastro · PDF em segundos · <span class="counter-highlight"><span id="cv-counter">1.247</span>+ currículos criados</span></p>
         </div>
-        <div class="hero-visual reveal">
+        <div class="hero-visual reveal" style="transition-delay:.35s">
             <div class="doc-float-scene">
                 <div class="doc-platform"></div>
                 <div class="doc-card">
@@ -198,6 +198,41 @@
         </div>
     </section>
 
+    <!-- BULLET IMPROVER -->
+    <section class="bullet-section">
+        <div class="section-inner">
+            <div class="section-label reveal">Experimente agora</div>
+            <h2 class="section-title reveal">Transforme uma frase fraca em bullet profissional</h2>
+            <p class="bullet-sub reveal">Escreva qualquer conquista genérica — a IA reescreve com impacto e números.</p>
+            <div class="bullet-demo reveal">
+                <div class="bullet-examples">
+                    <span class="bullet-example-tag" data-text="trabalhei com atendimento ao cliente">Atendimento ao cliente</span>
+                    <span class="bullet-example-tag" data-text="fiz relatórios no excel">Relatórios no Excel</span>
+                    <span class="bullet-example-tag" data-text="ajudei a equipe de vendas">Suporte a vendas</span>
+                    <span class="bullet-example-tag" data-text="gerenciei projetos da empresa">Gestão de projetos</span>
+                </div>
+                <div class="bullet-input-wrap">
+                    <textarea id="bullet-input" class="bullet-textarea" placeholder="Ex: trabalhei com atendimento ao cliente durante 2 anos..." rows="2"></textarea>
+                    <button class="btn-bullet-improve" id="btn-bullet-improve">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                        <span id="bullet-btn-text">Melhorar com IA</span>
+                        <div class="btn-spinner hidden" id="bullet-spinner"></div>
+                    </button>
+                </div>
+                <div class="bullet-result hidden" id="bullet-result">
+                    <div class="bullet-result-header">
+                        <span class="bullet-result-label">Bullet profissional:</span>
+                        <button class="btn-copy-bullet" id="btn-copy-bullet">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            Copiar
+                        </button>
+                    </div>
+                    <p class="bullet-result-text" id="bullet-result-text"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- STEPS -->
     <section class="steps">
         <div class="section-inner">
@@ -231,6 +266,83 @@
         </div>
     </section>
 
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="section-inner">
+            <div class="section-label reveal">Depoimentos</div>
+            <h2 class="section-title reveal">O que dizem quem usou</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Criei meu currículo em 15 minutos e tive retorno de 3 empresas na mesma semana. A IA até me lembrou de um projeto que eu tinha esquecido completamente."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#7C3AED,#A78BFA)">AM</div>
+                        <div>
+                            <div class="testimonial-name">Ana Martins</div>
+                            <div class="testimonial-role">Analista de Marketing · São Paulo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Usei o modo de análise antes de enviar meu CV para a vaga dos sonhos. Faltavam 7 palavras-chave. Ajustei, mandei e fui chamado para entrevista."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#0EA5E9,#38BDF8)">RC</div>
+                        <div>
+                            <div class="testimonial-name">Rafael Costa</div>
+                            <div class="testimonial-role">Desenvolvedor Backend · Recife</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Estava desempregada há 4 meses. Refiz meu currículo aqui, melhorei o score de 42 para 87. Em duas semanas já tinha proposta de emprego."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#10B981,#34D399)">JS</div>
+                        <div>
+                            <div class="testimonial-name">Juliana Santos</div>
+                            <div class="testimonial-role">Gestora de RH · Belo Horizonte</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="section-inner">
+            <div class="section-label reveal">Dúvidas</div>
+            <h2 class="section-title reveal">Perguntas frequentes</h2>
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <button class="faq-question">Meu currículo fica salvo? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-answer">Sim. O Revitael salva automaticamente o seu progresso no navegador. Na próxima vez que você acessar, aparece um banner para continuar de onde parou. Nenhuma conta ou cadastro necessário.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Funciona para qualquer área profissional? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-answer">Sim. A IA foi treinada para guiar profissionais de qualquer área — tecnologia, saúde, educação, finanças, marketing, engenharia e muito mais. Ela adapta as perguntas e sugestões ao seu contexto.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Posso editar o currículo depois de gerar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-answer">Sim. Basta continuar a conversa com a IA — diga o que quer mudar e ela atualiza o preview em tempo real. O botão "Baixar PDF" sempre gera a versão mais recente.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">O PDF sai pronto para enviar para recrutadores? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-answer">Sim. Os 3 templates (Profissional, Moderno e Minimalista) foram desenhados para passar pelos sistemas ATS usados por recrutadores e impressionar visualmente na triagem humana.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Quanto custa? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-answer">Completamente grátis. Sem cadastro, sem cartão de crédito, sem limite de uso. Crie e analise quantos currículos quiser.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">O que é o score de compatibilidade? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    <div class="faq-answer">É uma nota de 0 a 100 que mede o quanto seu currículo se encaixa na vaga específica. Leva em conta palavras-chave, experiências relevantes, formação e estrutura. Quanto maior o score, mais chance de passar pela triagem automática.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FINAL CTA -->
     <section class="cta-final">
         <div class="cta-blob"></div>
@@ -250,8 +362,36 @@
         </div>
     </section>
 
+    <!-- ABOUT -->
+    <section class="about-section">
+        <div class="section-inner">
+            <div class="about-card reveal">
+                <div class="about-avatar">HF</div>
+                <div class="about-body">
+                    <div class="about-tag">Criado por</div>
+                    <h3 class="about-name">Higor Feitosa</h3>
+                    <p class="about-desc">Desenvolvedor e automatizador apaixonado por criar ferramentas que simplificam a vida das pessoas. Construiu o Revitael para democratizar o acesso a currículos profissionais — porque todo mundo merece uma chance justa no mercado de trabalho.</p>
+                    <div class="about-links">
+                        <a href="mailto:higorfetts@gmail.com" class="about-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            higorfetts@gmail.com
+                        </a>
+                        <a href="https://linkedin.com/in/higorfetts" target="_blank" rel="noopener" class="about-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/higorfetts" target="_blank" rel="noopener" class="about-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
-        <span>© 2026 Revitael · Feito com 💜 por Higor Feitosa</span>
+        <span>© 2026 Revitael · Feito com <span class="footer-heart"><svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 14s-6-3.9-6-8a4 4 0 0 1 6-3.46A4 4 0 0 1 14 6c0 4.1-6 8-6 8z"/></svg></span> por Higor Feitosa</span>
     </footer>
 </div>
 
@@ -260,6 +400,9 @@
 ══════════════════════════════════════════════════════ -->
 <div id="app" class="app-screen hidden">
 
+    <!-- BARRA DE PROGRESSO GLOBAL (estilo YouTube) -->
+    <div id="top-bar" class="top-bar"></div>
+
     <!-- APP NAV -->
     <nav class="app-nav">
         <button class="btn-back" id="btn-back">
@@ -267,7 +410,23 @@
             Voltar
         </button>
         <a href="#" class="nav-logo" id="app-logo-link">
-            <span class="logo-mark">R</span>
+            <span class="logo-mark-icon">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="albg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#5B21B6"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient>
+                        <linearGradient id="aldoc" x1="10" y1="7" x2="30" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#F0EBFF"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+                    </defs>
+                    <rect width="40" height="40" rx="10" fill="url(#albg)"/>
+                    <rect x="0" y="0" width="40" height="18" rx="10" fill="white" opacity="0.07"/>
+                    <rect x="9" y="7" width="20" height="26" rx="4" fill="url(#aldoc)"/>
+                    <circle cx="16" cy="15" r="3.5" fill="#7C3AED" opacity="0.55"/>
+                    <path d="M11 22 Q11 19 16 19 Q21 19 21 22" fill="#7C3AED" opacity="0.35"/>
+                    <rect x="11" y="24" width="13" height="2" rx="1" fill="#7C3AED" opacity="0.2"/>
+                    <rect x="11" y="27" width="9" height="2" rx="1" fill="#7C3AED" opacity="0.15"/>
+                    <path d="M32 5 L33 8.2 L36.2 9.2 L33 10.2 L32 13.4 L31 10.2 L27.8 9.2 L31 8.2 Z" fill="#E879F9"/>
+                    <circle cx="6" cy="31" r="1.8" fill="#A78BFA" opacity="0.65"/>
+                </svg>
+            </span>
             <span class="logo-text">Revitael</span>
         </a>
         <button class="btn-theme" id="btn-theme-app">
@@ -302,10 +461,55 @@
 
     <!-- ── CREATOR MODE ─────────────────────────────── -->
     <div id="creator-mode" class="creator-mode hidden">
+
+        <!-- Banner warm-up servidor -->
+        <div class="warmup-banner hidden" id="warmup-banner">
+            <div class="warmup-inner">
+                <div class="btn-spinner" style="width:14px;height:14px;border-width:2px;border-color:rgba(167,139,250,.4);border-top-color:#A78BFA"></div>
+                <span>Servidor iniciando — a primeira resposta pode demorar até 30 s. Pode digitar enquanto isso!</span>
+                <button class="warmup-close" id="warmup-close">✕</button>
+            </div>
+        </div>
+
+        <!-- Tabs mobile: Chat / Preview -->
+        <div class="mobile-tabs" id="mobile-tabs">
+            <button class="mobile-tab active" id="tab-chat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Chat IA
+            </button>
+            <button class="mobile-tab" id="tab-preview">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Preview CV
+            </button>
+        </div>
+
+        <!-- Saved CV banner -->
+        <div class="saved-cv-banner hidden" id="saved-cv-banner">
+            <div class="saved-cv-content">
+                <div class="saved-cv-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <div class="saved-cv-text">
+                    <div class="saved-cv-title">Currículo salvo encontrado</div>
+                    <div class="saved-cv-sub" id="saved-cv-sub">Continuar de onde parou?</div>
+                </div>
+                <div class="saved-cv-btns">
+                    <button class="btn-saved-continue" id="btn-saved-continue">Continuar</button>
+                    <button class="btn-saved-discard" id="btn-saved-discard">Começar do zero</button>
+                </div>
+            </div>
+        </div>
+
         <div class="creator-layout">
 
             <!-- CHAT PANEL -->
             <div class="chat-panel">
+                <div class="chat-progress-wrap" id="chat-progress-wrap">
+                    <div class="chat-progress-track">
+                        <div class="chat-progress-fill" id="chat-progress-fill"></div>
+                    </div>
+                    <span class="chat-progress-label" id="chat-progress-label">0 / 8 seções</span>
+                </div>
                 <div class="chat-header">
                     <div class="chat-avatar">R</div>
                     <div>
@@ -326,8 +530,33 @@
             <!-- PREVIEW PANEL -->
             <div class="preview-panel">
                 <div class="preview-header">
-                    <span class="preview-title">Preview do Currículo</span>
+                    <div class="preview-title-wrap">
+                        <span class="preview-title">Preview do Currículo</span>
+                        <span class="edit-hint hidden" id="edit-hint">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                            Clique para editar
+                        </span>
+                    </div>
                     <div class="preview-actions">
+                        <!-- Foto no CV -->
+                        <label class="btn-outline-sm btn-photo hidden" id="btn-photo-label" title="Adicionar foto ao CV">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                            Foto
+                            <input type="file" id="photo-input" accept="image/*" hidden>
+                        </label>
+                        <!-- Compartilhar link -->
+                        <button class="btn-outline-sm hidden" id="btn-share-link">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                            Compartilhar
+                        </button>
+                        <button class="btn-outline-sm hidden" id="btn-copy-cv">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            Copiar texto
+                        </button>
+                        <button class="btn-outline-sm hidden" id="btn-translate-cv">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            PT→EN
+                        </button>
                         <div class="style-picker" id="style-picker">
                             <button class="style-btn active" data-style="profissional">Profissional</button>
                             <button class="style-btn" data-style="moderno">Moderno</button>
@@ -341,8 +570,55 @@
                 </div>
                 <div class="preview-body" id="preview-body">
                     <div class="preview-empty">
-                        <div class="preview-empty-icon">📄</div>
+                        <div class="preview-empty-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                        </div>
                         <p>Seu currículo aparecerá aqui<br>conforme você conversa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATS PANEL — abaixo do layout, largura total -->
+        <div class="ats-panel hidden" id="ats-panel">
+            <button class="ats-toggle" id="ats-toggle">
+                <div class="ats-toggle-left">
+                    <div class="ats-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div>
+                        <div class="ats-title">Otimização ATS</div>
+                        <div class="ats-sub">Descubra quais palavras-chave faltam para passar nos filtros automáticos de recrutamento</div>
+                    </div>
+                </div>
+                <svg class="ats-chevron" id="ats-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="ats-body" id="ats-body">
+                <textarea class="ats-textarea" id="ats-job-input" rows="3" placeholder="Cole a descrição da vaga aqui..."></textarea>
+                <button class="btn-ats" id="btn-ats-analyze">
+                    <span id="btn-ats-text">Analisar compatibilidade ATS</span>
+                    <div class="btn-spinner hidden" id="btn-ats-spinner" style="width:14px;height:14px;border-width:2px"></div>
+                </button>
+                <div class="ats-result hidden" id="ats-result">
+                    <div class="ats-score-row">
+                        <span class="ats-score-label">Compatibilidade ATS estimada</span>
+                        <span class="ats-score-val" id="ats-score-val">—</span>
+                    </div>
+                    <div class="ats-kw-section">
+                        <div class="ats-kw-title present">Palavras-chave presentes no seu CV</div>
+                        <div class="ats-kw-list" id="ats-present"></div>
+                    </div>
+                    <div class="ats-kw-section">
+                        <div class="ats-kw-title missing">Palavras-chave faltando no seu CV</div>
+                        <div class="ats-kw-list" id="ats-missing"></div>
+                    </div>
+                    <div class="ats-kw-section">
+                        <div class="ats-kw-title suggest">O que fazer agora</div>
+                        <div class="ats-suggestions" id="ats-suggestions"></div>
+                    </div>
+                    <div class="ats-courses-section hidden" id="ats-courses-section">
+                        <div class="ats-kw-title courses">Cursos recomendados para preencher os gaps</div>
+                        <div class="ats-courses-list" id="ats-courses"></div>
                     </div>
                 </div>
             </div>
@@ -357,6 +633,12 @@
             <div class="upload-panel" id="upload-panel">
                 <h2 class="upload-title">Analisar Currículo</h2>
                 <p class="upload-sub">Envie seu currículo e cole a descrição da vaga</p>
+
+                <!-- Histórico de análises anteriores -->
+                <div class="analysis-history hidden" id="analysis-history">
+                    <div class="history-title">Análises recentes</div>
+                    <div class="history-list" id="history-list"></div>
+                </div>
 
                 <div class="upload-zone" id="upload-zone">
                     <input type="file" id="cv-file-input" accept=".pdf" hidden>
@@ -378,7 +660,7 @@
                 </div>
 
                 <button class="btn-analyze magnetic" id="btn-analyze">
-                    <span id="btn-analyze-text">🔍 Analisar agora</span>
+                    <span id="btn-analyze-text"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Analisar agora</span>
                     <div class="btn-spinner hidden" id="btn-spinner"></div>
                 </button>
             </div>
@@ -424,6 +706,26 @@
                     </div>
                 </div>
 
+                <!-- SHARE -->
+                <div class="share-bar hidden" id="share-bar">
+                    <button class="btn-share-score" id="btn-share-score">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        Compartilhar resultado
+                    </button>
+                </div>
+
+                <!-- IMPROVE CV BANNER -->
+                <div class="improve-cv-bar hidden" id="improve-cv-bar">
+                    <div class="improve-cv-text">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                        Quer criar um currículo melhorado com base nesta análise?
+                    </div>
+                    <button class="btn-improve-cv" id="btn-improve-cv">
+                        Melhorar meu currículo com IA
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
+
                 <!-- ANALYSIS CHAT -->
                 <div class="chat-panel analysis-chat">
                     <div class="chat-header">
@@ -450,6 +752,80 @@
 
 <!-- CV RENDER TARGET (hidden, used for PDF) -->
 <div id="cv-render" style="position:absolute;left:-9999px;top:-9999px;width:210mm;"></div>
+
+<!-- BULLET FLOAT BUTTON -->
+<div id="bullet-float-btn" class="bullet-float-btn hidden">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+    <span id="bullet-float-text">Melhorar com IA</span>
+</div>
+
+<!-- SHARE MODAL -->
+<div class="share-modal hidden" id="share-modal">
+    <div class="share-modal-overlay" id="share-modal-overlay"></div>
+    <div class="share-modal-box">
+        <button class="share-modal-close" id="share-modal-close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <h3 class="share-modal-title">Compartilhe seu resultado</h3>
+        <div class="share-card" id="share-card">
+            <div class="share-card-logo">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px"><rect width="40" height="40" rx="10" fill="#7C3AED"/><rect x="9" y="7" width="20" height="26" rx="4" fill="white" opacity="0.9"/><circle cx="16" cy="15" r="3.5" fill="#7C3AED" opacity="0.6"/><path d="M11 22 Q11 19 16 19 Q21 19 21 22" fill="#7C3AED" opacity="0.4"/><rect x="11" y="24" width="13" height="2" rx="1" fill="#7C3AED" opacity="0.25"/><path d="M32 5 L33 8.2 L36.2 9.2 L33 10.2 L32 13.4 L31 10.2 L27.8 9.2 L31 8.2 Z" fill="#E879F9"/></svg>
+                <span>Revitael</span>
+            </div>
+            <div class="share-card-score-wrap">
+                <div class="share-card-score" id="share-card-score">0</div>
+                <div class="share-card-score-label">/ 100</div>
+            </div>
+            <div class="share-card-text" id="share-card-text">Compatibilidade com a vaga</div>
+            <div class="share-card-bars" id="share-card-bars"></div>
+            <div class="share-card-footer">revitael.web.app</div>
+        </div>
+        <div class="share-modal-actions">
+            <button class="btn-download-share" id="btn-download-share">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Baixar imagem
+            </button>
+            <button class="btn-copy-share" id="btn-copy-share">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Copiar texto
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: Link compartilhável do CV -->
+<div class="sharelink-modal hidden" id="sharelink-modal">
+    <div class="sharelink-overlay" id="sharelink-overlay"></div>
+    <div class="sharelink-box">
+        <button class="sharelink-close" id="sharelink-close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="sharelink-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </div>
+        <h3 class="sharelink-title">Compartilhar CV</h3>
+        <p class="sharelink-sub">Qualquer pessoa com o link pode visualizar e baixar seu currículo.</p>
+        <div class="sharelink-input-wrap">
+            <input class="sharelink-input" id="sharelink-url" readonly>
+            <button class="btn-copy-sharelink" id="btn-copy-sharelink">Copiar</button>
+        </div>
+    </div>
+</div>
+
+<!-- VIEWER: CV compartilhado via link -->
+<div class="cv-viewer hidden" id="cv-viewer">
+    <div class="cv-viewer-nav">
+        <div class="cv-viewer-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Revitael</span>
+        </div>
+        <button class="btn-viewer-download" id="btn-viewer-download">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Baixar PDF
+        </button>
+    </div>
+    <div class="cv-viewer-body" id="cv-viewer-body"></div>
+</div>
 
 <script>
     // Set PDF.js worker path
