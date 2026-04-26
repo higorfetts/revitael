@@ -88,6 +88,33 @@ Preencha o JSON com os valores reais da análise. score deve ser um número inte
 
 Responda sempre em português, de forma direta e motivadora.`;
 
+const COVER_LETTER_SYSTEM = `Você é especialista em cartas de apresentação profissionais brasileiras.
+
+Gere uma carta de apresentação em português baseada nos dados do currículo fornecido.
+
+FORMATO OBRIGATÓRIO:
+[Cidade do candidato], [data atual por extenso]
+
+Prezado(a) Recrutador(a),
+
+[Parágrafo 1 - 2 frases: apresentação — nome, área de atuação, anos de experiência e intenção de candidatura]
+
+[Parágrafo 2 - 3 frases: 2-3 conquistas concretas e mensuráveis, alinhadas com a vaga se fornecida]
+
+[Parágrafo 3 - 2 frases: motivação genuína pela oportunidade ou área, sem ser genérico]
+
+[Parágrafo 4 - 2 frases: encerramento com disponibilidade para entrevista]
+
+Atenciosamente,
+[Nome completo]
+[Email] | [Telefone]
+
+REGRAS:
+- Máximo 260 palavras
+- Tom profissional e humano — NUNCA use "venho por meio desta" ou frases clichê
+- Se tiver descrição da vaga, incorpore naturalmente 2-3 palavras-chave relevantes
+- Responda APENAS com a carta finalizada, sem comentários nem explicações`;
+
 app.post('/api/chat', async (req, res) => {
     const { messages, mode } = req.body;
     if (!messages || !Array.isArray(messages)) {
@@ -95,7 +122,9 @@ app.post('/api/chat', async (req, res) => {
     }
     try {
         const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-        const systemPrompt = mode === 'analyzer' ? ANALYZER_SYSTEM : CREATOR_SYSTEM;
+        const systemPrompt = mode === 'analyzer' ? ANALYZER_SYSTEM
+                           : mode === 'carta'    ? COVER_LETTER_SYSTEM
+                           : CREATOR_SYSTEM;
 
         const groqMessages = [
             { role: 'system', content: systemPrompt },

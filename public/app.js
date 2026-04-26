@@ -93,6 +93,145 @@ window.addEventListener('scroll', () => {
     document.getElementById('nav')?.classList.toggle('scrolled', window.scrollY > 20);
 });
 
+// ── SCROLL WRITE DEMO ─────────────────────────────────
+(function () {
+    const section = document.getElementById('swrite-section');
+    if (!section) return;
+    const paper   = document.getElementById('swrite-paper');
+    const cursor  = document.getElementById('swrite-cursor');
+    const eraser  = document.getElementById('swrite-eraser');
+    const done    = document.getElementById('sw-done');
+    const header  = document.getElementById('swrite-header');
+    const lines   = Array.from(section.querySelectorAll('.sw-line'));
+
+    // pen nib at (8%, 92%) of 52px icon
+    const NIB_X = 52 * 0.08, NIB_Y = 52 * 0.92;
+    // eraser center of 60×28px icon
+    const ER_W = 60, ER_H = 28;
+
+    // per-line durations matching CSS clip-path transitions
+    const DUR = { 'sw-name': 800, 'sw-div': 400, 'sw-skills': 1400, 'sw-bullet': 1200 };
+    function lineDur(el) {
+        const c = [...el.classList].find(k => DUR[k]);
+        return c ? DUR[c] : 950;
+    }
+
+    // ── PEN state ──
+    let penRaf = null, penStart = null, penDur = 950, penLine = null;
+
+    function sweepPen(lineEl) {
+        stopEraser();
+        cursor.classList.add('active');
+        penDur = lineDur(lineEl); penLine = lineEl; penStart = null;
+        if (penRaf) cancelAnimationFrame(penRaf);
+        penRaf = requestAnimationFrame(tickPen);
+    }
+
+    function tickPen(ts) {
+        if (!penStart) penStart = ts;
+        const prog  = Math.min(1, (ts - penStart) / penDur);
+        const eased = 1 - Math.pow(1 - prog, 2.8);
+        const pL = paper.offsetLeft, pT = paper.offsetTop;
+        const xL = pL + 32, xR = pL + paper.offsetWidth - 30;
+        const tipX = xL + (xR - xL) * eased;
+        const wobY = Math.sin(prog * Math.PI * 6) * 2.8;
+        const tipY = pT + penLine.offsetTop + penLine.offsetHeight * 0.5 + wobY;
+        cursor.style.left = (tipX - NIB_X) + 'px';
+        cursor.style.top  = (tipY - NIB_Y) + 'px';
+        if (prog < 1) penRaf = requestAnimationFrame(tickPen);
+        else          penRaf = null;
+    }
+
+    function stopPen() {
+        if (penRaf) { cancelAnimationFrame(penRaf); penRaf = null; }
+        cursor.classList.remove('active');
+    }
+
+    // ── ERASER state ──
+    let erRaf = null, erStart = null, erDur = 950, erLine = null;
+
+    function sweepEraser(lineEl) {
+        stopPen();
+        eraser.classList.add('active');
+        erDur = lineDur(lineEl); erLine = lineEl; erStart = null;
+        if (erRaf) cancelAnimationFrame(erRaf);
+        erRaf = requestAnimationFrame(tickEraser);
+    }
+
+    function tickEraser(ts) {
+        if (!erStart) erStart = ts;
+        const prog  = Math.min(1, (ts - erStart) / erDur);
+        const eased = 1 - Math.pow(1 - prog, 2.5); // ease-out, right→left
+        const pL = paper.offsetLeft, pT = paper.offsetTop;
+        const xL = pL + 32, xR = pL + paper.offsetWidth - 30;
+        // center of eraser sweeps from xR down to xL
+        const cx   = xR - (xR - xL) * eased;
+        const wobY = Math.sin(prog * Math.PI * 7) * 2.2;
+        const cy   = pT + erLine.offsetTop + erLine.offsetHeight * 0.5 + wobY;
+        eraser.style.left = (cx - ER_W * 0.5) + 'px';
+        eraser.style.top  = (cy - ER_H * 0.5) + 'px';
+        if (prog < 1) erRaf = requestAnimationFrame(tickEraser);
+        else          erRaf = null;
+    }
+
+    function stopEraser() {
+        if (erRaf) { cancelAnimationFrame(erRaf); erRaf = null; }
+        eraser.classList.remove('active');
+    }
+
+    // ── scroll driver ──
+    let prevTyped = [], penTypedCount = 0;
+
+    function onScroll() {
+        const scrolled = window.scrollY - section.offsetTop;
+        const total    = section.offsetHeight - window.innerHeight;
+        const p        = Math.max(0, Math.min(1, scrolled / total));
+
+        header.style.opacity   = String(Math.max(0, 1 - p * 7));
+        header.style.transform = `translateY(${-p * 36}px)`;
+
+        const sc = 0.88 + Math.min(0.12, p * 1.5);
+        paper.parentElement.style.opacity   = String(Math.min(1, p * 6));
+        paper.parentElement.style.transform = `scale(${sc})`;
+
+        lines.forEach(line => {
+            const t = parseFloat(line.dataset.sp || '1');
+            if (p >= t) line.classList.add('typed');
+            else        line.classList.remove('typed');
+        });
+
+        if (p >= 0.99) {
+            done.classList.add('show');
+            stopPen(); stopEraser();
+            penTypedCount = 0; prevTyped = [];
+            return;
+        }
+        done.classList.remove('show');
+
+        const typed = lines.filter(l =>
+            l.classList.contains('typed') && !l.classList.contains('sw-div')
+        );
+        const tc = typed.length;
+
+        if (tc === 0) {
+            stopPen(); stopEraser();
+        } else if (tc > penTypedCount) {
+            // new line written → pen sweeps left-to-right
+            sweepPen(typed[tc - 1]);
+        } else if (tc < penTypedCount) {
+            // line erased → eraser sweeps right-to-left on the line just removed
+            const erasedLine = prevTyped[tc] || prevTyped[prevTyped.length - 1];
+            if (erasedLine) sweepEraser(erasedLine);
+        }
+
+        prevTyped      = typed.slice();
+        penTypedCount  = tc;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+}());
+
 // ── NAVIGATION: LANDING ↔ APP ─────────────────────────
 function openApp(mode) {
     document.getElementById('landing').classList.add('hidden');
@@ -159,7 +298,9 @@ document.getElementById('btn-reset-creator').addEventListener('click', () => {
     document.getElementById('btn-translate-cv').classList.add('hidden');
     document.getElementById('btn-photo-label').classList.add('hidden');
     document.getElementById('btn-share-link').classList.add('hidden');
+    document.getElementById('btn-carta').classList.add('hidden');
     document.getElementById('ats-panel').classList.add('hidden');
+    document.getElementById('carta-panel').classList.add('hidden');
     document.getElementById('edit-hint').classList.add('hidden');
     document.getElementById('ats-result').classList.add('hidden');
     document.getElementById('saved-cv-banner').classList.add('hidden');
@@ -270,7 +411,9 @@ function parseCvJson(text) {
         document.getElementById('btn-translate-cv').classList.remove('hidden');
         document.getElementById('btn-photo-label').classList.remove('hidden');
         document.getElementById('btn-share-link').classList.remove('hidden');
+        document.getElementById('btn-carta').classList.remove('hidden');
         document.getElementById('ats-panel').classList.remove('hidden');
+        document.getElementById('carta-panel').classList.remove('hidden');
         document.getElementById('edit-hint').classList.remove('hidden');
         switchToPreviewOnMobile();
         saveToStorage();
@@ -1176,7 +1319,9 @@ function restoreFromStorage(saved) {
     document.getElementById('btn-translate-cv').classList.remove('hidden');
     document.getElementById('btn-photo-label').classList.remove('hidden');
     document.getElementById('btn-share-link').classList.remove('hidden');
+    document.getElementById('btn-carta').classList.remove('hidden');
     document.getElementById('ats-panel').classList.remove('hidden');
+    document.getElementById('carta-panel').classList.remove('hidden');
     document.getElementById('edit-hint').classList.remove('hidden');
     renderCvPreview();
     updateProgress();
@@ -1203,7 +1348,7 @@ document.getElementById('btn-improve-cv').addEventListener('click', () => {
     document.getElementById('analyzer-mode').classList.add('hidden');
     document.getElementById('creator-mode').classList.remove('hidden');
     document.getElementById('creator-messages').innerHTML = '';
-    ['btn-copy-cv','btn-translate-cv','btn-photo-label','btn-share-link','ats-panel','edit-hint','saved-cv-banner'].forEach(id => {
+    ['btn-copy-cv','btn-translate-cv','btn-photo-label','btn-share-link','btn-carta','ats-panel','carta-panel','edit-hint','saved-cv-banner'].forEach(id => {
         document.getElementById(id)?.classList.add('hidden');
     });
     document.getElementById('btn-download-cv').disabled = true;
@@ -1607,6 +1752,77 @@ VAGA: ${jobDesc}`;
     btn.disabled = false;
     btnText.textContent = 'Analisar compatibilidade ATS';
     spinner.classList.add('hidden');
+});
+
+// ══════════════════════════════════════════════════════
+//  CARTA DE APRESENTAÇÃO
+// ══════════════════════════════════════════════════════
+
+// Scroll to panel when header button is clicked
+document.getElementById('btn-carta').addEventListener('click', () => {
+    const panel = document.getElementById('carta-panel');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // auto-open body if not open
+    const body    = document.getElementById('carta-body');
+    const chevron = document.getElementById('carta-chevron');
+    if (body.classList.contains('hidden')) {
+        body.classList.remove('hidden');
+        chevron.classList.add('open');
+    }
+});
+
+document.getElementById('carta-toggle').addEventListener('click', () => {
+    const body    = document.getElementById('carta-body');
+    const chevron = document.getElementById('carta-chevron');
+    const isOpen  = !body.classList.contains('hidden');
+    body.classList.toggle('hidden', isOpen);
+    chevron.classList.toggle('open', !isOpen);
+});
+
+document.getElementById('btn-carta-gen').addEventListener('click', async () => {
+    const jobDesc  = document.getElementById('carta-job-input').value.trim();
+    const btn      = document.getElementById('btn-carta-gen');
+    const btnText  = document.getElementById('carta-btn-text');
+    const spinner  = document.getElementById('carta-spinner');
+    const result   = document.getElementById('carta-result');
+    const cartaEl  = document.getElementById('carta-text');
+
+    btn.disabled = true;
+    spinner.classList.remove('hidden');
+    btnText.textContent = 'Gerando...';
+    result.classList.add('hidden');
+    cartaEl.textContent = '';
+
+    const cvSummary = JSON.stringify(cvData);
+    const userMsg   = jobDesc
+        ? `Currículo:\n${cvSummary}\n\nDescrição da vaga:\n${jobDesc}`
+        : `Currículo:\n${cvSummary}`;
+
+    try {
+        await streamApi('/api/chat', {
+            messages: [{ role: 'user', content: userMsg }],
+            mode: 'carta'
+        }, (delta) => {
+            cartaEl.textContent += delta;
+            if (result.classList.contains('hidden')) result.classList.remove('hidden');
+        });
+    } catch(e) {
+        cartaEl.textContent = 'Erro ao gerar carta. Tente novamente.';
+        result.classList.remove('hidden');
+    }
+
+    btn.disabled = false;
+    spinner.classList.add('hidden');
+    btnText.textContent = 'Gerar nova carta';
+});
+
+document.getElementById('btn-copy-carta').addEventListener('click', () => {
+    const text = document.getElementById('carta-text').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        const label = document.getElementById('carta-copy-text');
+        label.textContent = 'Copiado!';
+        setTimeout(() => { label.textContent = 'Copiar'; }, 2000);
+    });
 });
 
 // ══════════════════════════════════════════════════════

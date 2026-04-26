@@ -1,21 +1,19 @@
 <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="fbg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#5B21B6"/>
-      <stop offset="1" stop-color="#8B5CF6"/>
-    </linearGradient>
-    <linearGradient id="fdoc" x1="10" y1="7" x2="30" y2="36" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F0EBFF"/>
-      <stop offset="1" stop-color="#FFFFFF"/>
+    <linearGradient id="fdoc" x1="5" y1="2" x2="35" y2="38" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#A78BFA"/>
     </linearGradient>
   </defs>
-  <rect width="40" height="40" rx="10" fill="url(#fbg)"/>
-  <rect x="0" y="0" width="40" height="18" rx="10" fill="white" opacity="0.07"/>
-  <rect x="9" y="7" width="20" height="26" rx="4" fill="url(#fdoc)"/>
-  <circle cx="16" cy="15" r="3.5" fill="#7C3AED" opacity="0.55"/>
-  <path d="M11 22 Q11 19 16 19 Q21 19 21 22" fill="#7C3AED" opacity="0.35"/>
-  <rect x="11" y="24" width="13" height="2" rx="1" fill="#7C3AED" opacity="0.2"/>
-  <rect x="11" y="27" width="9" height="2" rx="1" fill="#7C3AED" opacity="0.15"/>
-  <path d="M32 5 L33 8.2 L36.2 9.2 L33 10.2 L32 13.4 L31 10.2 L27.8 9.2 L31 8.2 Z" fill="#E879F9"/>
-  <circle cx="6" cy="31" r="1.8" fill="#A78BFA" opacity="0.65"/>
+  <!-- Documento principal -->
+  <rect x="6" y="2" width="24" height="32" rx="4" fill="url(#fdoc)"/>
+  <!-- Dobra do canto superior direito -->
+  <path d="M24 2 L30 8 L24 8 Z" fill="white" opacity="0.25"/>
+  <!-- Linhas de texto -->
+  <rect x="10" y="14" width="16" height="2.5" rx="1.25" fill="white" opacity="0.85"/>
+  <rect x="10" y="19" width="12" height="2.5" rx="1.25" fill="white" opacity="0.65"/>
+  <rect x="10" y="24" width="14" height="2.5" rx="1.25" fill="white" opacity="0.65"/>
+  <rect x="10" y="29" width="9"  height="2.5" rx="1.25" fill="white" opacity="0.45"/>
+  <!-- Estrela magenta pequena -->
+  <path d="M33 3 L33.9 5.7 L36.8 5.7 L34.4 7.4 L35.3 10.1 L33 8.4 L30.7 10.1 L31.6 7.4 L29.2 5.7 L32.1 5.7 Z" fill="#E879F9"/>
 </svg>

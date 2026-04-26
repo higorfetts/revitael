@@ -149,6 +149,89 @@
         </div>
     </section>
 
+    <!-- SCROLL WRITE DEMO -->
+    <section class="swrite-section" id="swrite-section">
+        <div class="swrite-sticky">
+            <div class="swrite-header" id="swrite-header">
+                <div class="section-label">Magia em tempo real</div>
+                <h2 class="swrite-title">Veja seu currículo sendo escrito<br><span class="gradient-text">enquanto você rola a página</span></h2>
+            </div>
+            <div class="swrite-scene" id="swrite-scene">
+                <!-- Borracha — aparece ao rolar pra cima -->
+                <div class="swrite-eraser" id="swrite-eraser">
+                    <svg class="sw-eraser-svg" viewBox="0 0 54 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="sw-eg" x1="0" y1="0" x2="54" y2="24" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#FCA5A5"/>
+                                <stop offset="1" stop-color="#F43F5E"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- corpo principal -->
+                        <rect x="0.5" y="0.5" width="53" height="23" rx="4" fill="url(#sw-eg)" stroke="#E11D48" stroke-width="0.8"/>
+                        <!-- seção desgastada (esquerda) -->
+                        <rect x="0.5" y="0.5" width="14.5" height="23" rx="4" fill="#E11D48" opacity="0.25"/>
+                        <!-- divisória -->
+                        <line x1="15" y1="0.5" x2="15" y2="23.5" stroke="#E11D48" stroke-width="1.2" opacity="0.45"/>
+                        <!-- reflexo -->
+                        <rect x="16" y="3" width="34" height="5" rx="2" fill="white" opacity="0.22"/>
+                        <!-- linhas de marca -->
+                        <rect x="18" y="12" width="20" height="2" rx="1" fill="white" opacity="0.14"/>
+                        <rect x="18" y="16" width="13" height="2" rx="1" fill="white" opacity="0.10"/>
+                    </svg>
+                </div>
+
+                <!-- Pen cursor — outside paper so overflow:hidden não corta -->
+                <div class="swrite-cursor" id="swrite-cursor">
+                    <svg class="sw-pen-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="sw-pg" x1="21" y1="3" x2="3" y2="21" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#7C3AED"/>
+                                <stop offset="0.6" stop-color="#A78BFA"/>
+                                <stop offset="1" stop-color="#C4B5FD"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- corpo da caneta -->
+                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" fill="url(#sw-pg)" stroke="#5B21B6" stroke-width="0.4" stroke-linejoin="round"/>
+                        <!-- reflexo no corpo -->
+                        <path d="M17.5 4L20 6.5" stroke="white" stroke-width="0.9" stroke-linecap="round" opacity="0.55"/>
+                        <!-- bico / ponta -->
+                        <path d="M2 22l1.5-5.5L7.5 20.5Z" fill="#5B21B6" opacity="0.6"/>
+                        <!-- gota de tinta na ponta -->
+                        <circle cx="2.6" cy="21.5" r="0.9" fill="#E879F9"/>
+                    </svg>
+                </div>
+                <div class="swrite-paper" id="swrite-paper">
+                    <div class="sw-name sw-line" data-sp="0.04">Lucas Mendes</div>
+                    <div class="sw-role sw-line" data-sp="0.11">Desenvolvedor Full Stack &middot; São Paulo, SP</div>
+                    <div class="sw-contact sw-line" data-sp="0.19">lucas@email.com &nbsp;&middot;&nbsp; (11) 98765-4321 &nbsp;&middot;&nbsp; linkedin.com/in/lucasmendes</div>
+                    <div class="sw-div sw-line" data-sp="0.27"></div>
+                    <div class="sw-sec sw-line" data-sp="0.32">Experiência Profissional</div>
+                    <div class="sw-employer sw-line" data-sp="0.40">Nubank <span class="sw-period">2022 – atual</span></div>
+                    <div class="sw-jobtitle sw-line" data-sp="0.46">Engenheiro de Software Sênior</div>
+                    <div class="sw-bullet sw-line" data-sp="0.53">• Reduziu latência de APIs em 40% com cache distribuído Redis</div>
+                    <div class="sw-bullet sw-line" data-sp="0.60">• Liderou migração para microsserviços, servindo 2M+ usuários</div>
+                    <div class="sw-employer sw-line" data-sp="0.67">iFood <span class="sw-period">2020 – 2022</span></div>
+                    <div class="sw-jobtitle sw-line" data-sp="0.72">Desenvolvedor Pleno</div>
+                    <div class="sw-bullet sw-line" data-sp="0.78">• Criou sistema de rastreamento em tempo real com WebSocket</div>
+                    <div class="sw-div sw-line" data-sp="0.83"></div>
+                    <div class="sw-sec sw-line" data-sp="0.86">Habilidades</div>
+                    <div class="sw-skills sw-line" data-sp="0.90">
+                        <span class="sw-skill">React</span><span class="sw-skill">Node.js</span><span class="sw-skill">TypeScript</span><span class="sw-skill">AWS</span><span class="sw-skill">Docker</span>
+                    </div>
+                    <div class="sw-sec sw-line" data-sp="0.93">Idiomas</div>
+                    <div class="sw-contact sw-line" data-sp="0.96">Português (Nativo) &nbsp;&middot;&nbsp; Inglês (Avançado)</div>
+                </div>
+                <div class="sw-done" id="sw-done">
+                    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="14" cy="14" r="13" fill="#10B981" opacity="0.15" stroke="#10B981" stroke-width="1.5"/>
+                        <polyline points="7,14 12,19 21,10" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Currículo pronto!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FEATURES -->
     <section class="features" id="features">
         <div class="section-inner">
@@ -557,6 +640,10 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                             PT→EN
                         </button>
+                        <button class="btn-outline-sm hidden" id="btn-carta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            Carta
+                        </button>
                         <div class="style-picker" id="style-picker">
                             <button class="style-btn active" data-style="profissional">Profissional</button>
                             <button class="style-btn" data-style="moderno">Moderno</button>
@@ -620,6 +707,40 @@
                         <div class="ats-kw-title courses">Cursos recomendados para preencher os gaps</div>
                         <div class="ats-courses-list" id="ats-courses"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARTA PANEL -->
+        <div class="carta-panel hidden" id="carta-panel">
+            <button class="carta-toggle" id="carta-toggle">
+                <div class="carta-toggle-left">
+                    <div class="carta-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    </div>
+                    <div>
+                        <div class="carta-title">Carta de Apresentação</div>
+                        <div class="carta-sub">Gere uma carta profissional personalizada para complementar seu currículo</div>
+                    </div>
+                </div>
+                <svg class="carta-chevron" id="carta-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="carta-body hidden" id="carta-body">
+                <textarea class="carta-textarea" id="carta-job-input" rows="3" placeholder="Cole a descrição da vaga aqui (opcional — a carta ficará ainda mais personalizada)..."></textarea>
+                <button class="btn-carta-gen" id="btn-carta-gen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                    <span id="carta-btn-text">Gerar carta de apresentação</span>
+                    <div class="btn-spinner hidden" id="carta-spinner" style="width:14px;height:14px;border-width:2px"></div>
+                </button>
+                <div class="carta-result hidden" id="carta-result">
+                    <div class="carta-result-header">
+                        <span class="carta-result-label">Sua carta de apresentação</span>
+                        <button class="btn-copy-carta" id="btn-copy-carta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            <span id="carta-copy-text">Copiar</span>
+                        </button>
+                    </div>
+                    <div class="carta-text" id="carta-text"></div>
                 </div>
             </div>
         </div>
