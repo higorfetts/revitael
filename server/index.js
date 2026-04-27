@@ -148,7 +148,7 @@ app.post('/api/chat', async (req, res) => {
             model: 'llama-3.3-70b-versatile',
             messages: groqMessages,
             max_tokens: 2048,
-            temperature: 0.7,
+            temperature: mode === 'analyzer' ? 0.1 : 0.7,
             stream: true,
         });
 
