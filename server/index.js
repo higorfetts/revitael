@@ -124,6 +124,7 @@ app.post('/api/chat', async (req, res) => {
     if (!messages || !Array.isArray(messages)) {
         return res.status(400).json({ error: 'messages array required' });
     }
+    console.log(`[API] mode=${mode} msgs=${messages.length} first200="${(messages[0]?.content||'').slice(0,200)}"`);
     try {
         const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
         const systemPrompt = mode === 'analyzer' ? ANALYZER_SYSTEM
