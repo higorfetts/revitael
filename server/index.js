@@ -168,6 +168,6 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-app.get('/health', (_, res) => res.json({ ok: true, service: 'Revitael API' }));
+app.get('/health', (_, res) => res.json({ ok: true, service: 'Revitael API', v: 5 }));
 
 app.listen(port, () => console.log(`Revitael API rodando na porta ${port}`));
